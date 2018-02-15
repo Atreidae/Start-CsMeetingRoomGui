@@ -81,22 +81,20 @@
       <SubType>Code</SubType>
       <DependentUpon>Old XAML code\Old.MainWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ResetPin.xaml.ps1">
-      <SubType>Code</SubType>
-      <DependentUpon>ResetPin.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Start-CsMeetingRoomGui.ps1" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Old XAML code\Old.MainWindow.xaml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="ResetPin.xaml">
-      <SubType>Designer</SubType>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Old XAML code\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="MainWindow.resx">
+      <DependentUpon>MainWindow.ps1</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Target Name="Build" />
