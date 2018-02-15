@@ -1,0 +1,88 @@
+﻿<Window x:Name="Skype4B_Analog_Device_Manager" x:Class="Skype4B_Analog_Device_Manager.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Skype4B_Analog_Device_Manager"
+        mc:Ignorable="d"
+        Title="Skype4BAdmin Meeting Room Manager" Height="580" Width="729.398" Foreground="#FF0874AA" WindowStyle="ThreeDBorderWindow" BorderBrush="#FF0874AA" Background="White">
+    <Grid Margin="10,0,0,4">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="17*"/>
+            <RowDefinition Height="516*"/>
+        </Grid.RowDefinitions>
+        <ListBox x:Name="DevicelistBox" HorizontalAlignment="Left" Height="184" Margin="2,6,0,0" VerticalAlignment="Top" Width="326" RenderTransformOrigin="0.513,0.501" Grid.Row="1"/>
+        <Label x:Name="Select_Device" Content="Meeting Rooms" HorizontalAlignment="Left" Height="33" Margin="2,2,0,0" VerticalAlignment="Top" Width="139" FontWeight="Bold" Grid.RowSpan="2" Foreground="#FF0874AA"/>
+        <TextBox x:Name="AnalogName" HorizontalAlignment="Left" Height="23" Margin="103,263,0,0" Grid.Row="1" TextWrapping="Wrap" Text="MRoom1" VerticalAlignment="Top" Width="225" IsEnabled="False" Foreground="#FF0874AA"/>
+        <Label x:Name="Lbl_RoomAlias" Content="Room Alias" HorizontalAlignment="Left" Height="24" Margin="10,259,0,0" VerticalAlignment="Top" Width="97" Grid.Row="1" Foreground="#FF0874AA"/>
+        <TextBox x:Name="RoomTelURI" HorizontalAlignment="Left" Height="23" Margin="440,118,0,0" Grid.Row="1" TextWrapping="Wrap" Text="tel:+61386408640;ext=8640" VerticalAlignment="Top" Width="251" Foreground="#FF0874AA"/>
+        <Label x:Name="Lbl_TelURI" Content="TEL URI" HorizontalAlignment="Left" Height="30" Margin="338,114,0,0" VerticalAlignment="Top" Width="97" Grid.Row="1" Foreground="#FF0874AA"/>
+        <Label x:Name="Lbl_RegistrarPool" Content="Registrar Pool" HorizontalAlignment="Left" Height="29" Margin="338,174,0,0" VerticalAlignment="Top" Width="97" Grid.Row="1" Foreground="#FF0874AA"/>
+        <ComboBox x:Name="Cbx_RegistrarPool" HorizontalAlignment="Left" Height="24" Margin="440,176,0,0" Grid.Row="1" VerticalAlignment="Top" Width="251" Foreground="#FF0874AA" Background="White" BorderBrush="#FF0874AA">
+            <ComboBoxItem Content="--None Selected--" IsSelected="True"/>
+        </ComboBox>
+        <Label x:Name="Lbl_VoicePolicy" Content="Voice Policy" HorizontalAlignment="Left" Height="29" Margin="338,203,0,0" VerticalAlignment="Top" Width="97" Grid.Row="1" Foreground="#FF0874AA"/>
+        <ComboBox x:Name="Cbx_VoicePolicy" HorizontalAlignment="Left" Height="24" Margin="440,205,0,0" Grid.Row="1" VerticalAlignment="Top" Width="251" Foreground="#FF0874AA" Background="White" BorderBrush="#FF0874AA">
+            <ComboBoxItem Content="--None Selected--" IsSelected="True"/>
+        </ComboBox>
+        <Label x:Name="Lbl_OU" Content="Object DN" HorizontalAlignment="Left" Height="24" Margin="10,297,0,0" VerticalAlignment="Top" Width="97" Grid.Row="1" Foreground="#FF0874AA"/>
+        <TextBox x:Name="OU" HorizontalAlignment="Left" Height="23" Margin="103,298,0,0" Grid.Row="1" TextWrapping="Wrap" Text="ou=Meeting Rooms,ou=Users,dc=skype4badmin,dc=local" VerticalAlignment="Top" Width="588" IsEnabled="False" Foreground="#FF0874AA"/>
+        <Button x:Name="Btn_Save" Content="Save" HorizontalAlignment="Left" Height="23" Margin="605,264,0,0" Grid.Row="1" VerticalAlignment="Top" Width="86" FontWeight="Bold" Foreground="White" Background="#FF0874AA" Click="Btn_Save_Click"/>
+        <Button x:Name="Btn_Cancel" Content="Cancel" HorizontalAlignment="Left" Height="23" Margin="512,264,0,0" Grid.Row="1" VerticalAlignment="Top" Width="88" Foreground="#FF0874AA" Background="White"/>
+        <Label x:Name="Lbl_About" Content="Skype4B Meeting Room Manager by James Arber " HorizontalAlignment="Left" Height="31" Margin="338,459,0,0" VerticalAlignment="Top" Width="355" Grid.Row="1" Foreground="#FF0874AA"/>
+        <TextBox x:Name="RoomSipAddress" HorizontalAlignment="Left" Height="23" Margin="440,146,0,0" Grid.Row="1" TextWrapping="Wrap" Text="sip:ExampleRoom1@Skype4BAdmin.com" VerticalAlignment="Top" Width="251" Foreground="#FF0874AA"/>
+        <Label x:Name="Lbl_SipAddress" Content="SipAddress" HorizontalAlignment="Left" Height="27" Margin="338,142,0,0" VerticalAlignment="Top" Width="97" Grid.Row="1" Foreground="#FF0874AA"/>
+        <Button x:Name="Btn_NewRoom" Content="New Room..." HorizontalAlignment="Left" Height="23" Margin="240,195,0,0" Grid.Row="1" VerticalAlignment="Top" Width="88" Cursor="None" Foreground="#FF0874AA" Background="White"/>
+        <TextBox x:Name="DisplayNumber_Copy" HorizontalAlignment="Left" Height="23" Margin="103,380,0,0" Grid.Row="1" TextWrapping="Wrap" Text="ExampleRoom1@Skype4BAdmin.com" VerticalAlignment="Top" Width="225" IsEnabled="False" Foreground="#FF0874AA"/>
+        <Label x:Name="Lbl_SamAccount" Content="Sam Account" HorizontalAlignment="Left" Height="25" Margin="10,232,0,0" VerticalAlignment="Top" Width="97" Grid.Row="1" Foreground="#FF0874AA"/>
+        <TextBox x:Name="SamAccount" HorizontalAlignment="Left" Height="23" Margin="103,235,0,0" Grid.Row="1" TextWrapping="Wrap" Text="MRoom1@skype4badmin.local" VerticalAlignment="Top" Width="225" IsEnabled="False" Foreground="#FF0874AA"/>
+        <Label x:Name="Lbl_EXRoomName" Content="Room Name" HorizontalAlignment="Left" Height="28" Margin="10,349,0,0" VerticalAlignment="Top" Width="97" Grid.Row="1" Foreground="#FF0874AA"/>
+        <TextBox x:Name="AnalogName_Copy1" HorizontalAlignment="Left" Height="23" Margin="103,353,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Some Meeting Room" VerticalAlignment="Top" Width="225" IsEnabled="False" Foreground="#FF0874AA"/>
+        <Label x:Name="Lbl_Capacity" Content="Capacity" HorizontalAlignment="Left" Height="27" Margin="10,403,0,0" VerticalAlignment="Top" Width="97" Grid.Row="1" Foreground="#FF0874AA"/>
+        <Label x:Name="LbL_Skype4BSettings" Content="Lync / Skype4B account settings" HorizontalAlignment="Left" Height="30" Margin="338,88,0,0" VerticalAlignment="Top" Width="272" Grid.Row="1" FontWeight="Bold" Foreground="#FF0874AA"/>
+        <Label x:Name="Lbl_ADSettings" Content="Active Directory account settings" HorizontalAlignment="Left" Height="33" Margin="0,211,0,0" VerticalAlignment="Top" Width="272" FontWeight="Bold" Grid.Row="1" Foreground="#FF0874AA"/>
+        <Button x:Name="Btn_ResetPin" Content="Reset Pin..." HorizontalAlignment="Left" Height="23" Margin="147,195,0,0" Grid.Row="1" VerticalAlignment="Top" Width="88" Foreground="#FF0874AA" Background="White" Click="Btn_ResetPin_Click"/>
+        <Label x:Name="Lbl_ExchangeAttr" Content="Exchange Attributes" HorizontalAlignment="Left" Height="33" Margin="10,323,0,0" VerticalAlignment="Top" Width="272" Grid.Row="1" FontWeight="Bold" Foreground="#FF0874AA"/>
+        <Label x:Name="Select_Device_Copy3" Content="Lync / Skype4B Attributes" HorizontalAlignment="Left" Height="33" Margin="338,323,0,0" VerticalAlignment="Top" Width="272" Grid.Row="1" FontWeight="Bold" Foreground="#FF0874AA"/>
+        <Label x:Name="Lbl_EmailAddress" Content="Email Address" HorizontalAlignment="Left" Height="27" Margin="10,376,0,0" VerticalAlignment="Top" Width="97" Grid.Row="1" Foreground="#FF0874AA"/>
+        <TextBox x:Name="DisplayNumber_Copy1" HorizontalAlignment="Left" Height="23" Margin="103,408,0,0" Grid.Row="1" TextWrapping="Wrap" Text="16" VerticalAlignment="Top" Width="225" IsEnabled="False" Foreground="#FF0874AA"/>
+        <Label x:Name="Lbl_DialPlan" Content="Dial Plan" HorizontalAlignment="Left" Height="29" Margin="338,232,0,0" VerticalAlignment="Top" Width="97" Grid.Row="1" Foreground="#FF0874AA"/>
+        <ComboBox x:Name="Cbx_DialPlan" HorizontalAlignment="Left" Height="24" Margin="440,234,0,0" Grid.Row="1" VerticalAlignment="Top" Width="251" Foreground="#FF0874AA" Background="White" BorderBrush="#FF0874AA">
+            <ComboBoxItem Content="--None Selected--" IsSelected="True"/>
+        </ComboBox>
+        <Expander x:Name="expander" Header="Show Advanced" HorizontalAlignment="Left" Margin="333,264,0,0" Grid.Row="1" VerticalAlignment="Top" Width="174" Height="23" Foreground="#FF0874AA">
+            <Grid Background="#FFE5E5E5"/>
+        </Expander>
+        <Label x:Name="Lbl_ADEnabled" Content="Account Enabled? (Required for EWS Intergration)" HorizontalAlignment="Left" Height="26" Margin="338,62,0,0" VerticalAlignment="Top" Width="282" Grid.Row="1" Foreground="#FF0874AA"/>
+        <TextBox x:Name="ADEnabled" HorizontalAlignment="Left" Height="23" Margin="616,65,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Unknown" VerticalAlignment="Top" Width="77" IsEnabled="False" Foreground="#FF0874AA"/>
+        <Label x:Name="Lbl_Location" Content="Location" HorizontalAlignment="Left" Height="27" Margin="10,431,0,0" VerticalAlignment="Top" Width="97" Grid.Row="1" Foreground="#FF0874AA"/>
+        <TextBox x:Name="DisplayNumber_Copy2" HorizontalAlignment="Left" Height="23" Margin="103,435,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Unknown" VerticalAlignment="Top" Width="225" IsEnabled="False" Foreground="#FF0874AA"/>
+        <Label x:Name="Lbl_ExPhone" Content="Phone" HorizontalAlignment="Left" Height="27" Margin="10,458,0,0" VerticalAlignment="Top" Width="97" Grid.Row="1" Foreground="#FF0874AA"/>
+        <TextBox x:Name="DisplayNumber_Copy3" HorizontalAlignment="Left" Height="23" Margin="103,463,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Unknown" VerticalAlignment="Top" Width="225" IsEnabled="False" Foreground="#FF0874AA"/>
+        <Label x:Name="Lbl_RegistrarPool_Copy" Content="Pin Policy" HorizontalAlignment="Left" Height="29" Margin="338,351,0,0" VerticalAlignment="Top" Width="97" Grid.Row="1" Foreground="#FF0874AA"/>
+        <ComboBox x:Name="Cbx_RegistrarPool_Copy" HorizontalAlignment="Left" Height="24" Margin="440,353,0,0" Grid.Row="1" VerticalAlignment="Top" Width="251" Foreground="#FF0874AA" Background="White" BorderBrush="#FF0874AA">
+            <ComboBoxItem Content="--None Selected--" IsSelected="True"/>
+        </ComboBox>
+        <Label x:Name="Lbl_RegistrarPool_Copy1" Content="Location Policy" HorizontalAlignment="Left" Height="29" Margin="338,380,0,0" VerticalAlignment="Top" Width="97" Grid.Row="1" Foreground="#FF0874AA"/>
+        <ComboBox x:Name="Cbx_RegistrarPool_Copy1" HorizontalAlignment="Left" Height="24" Margin="440,382,0,0" Grid.Row="1" VerticalAlignment="Top" Width="251" Foreground="#FF0874AA" Background="White" BorderBrush="#FF0874AA">
+            <ComboBoxItem Content="--None Selected--" IsSelected="True"/>
+        </ComboBox>
+        <Label x:Name="Lbl_RegistrarPool_Copy2" Content="Conf. Policy" HorizontalAlignment="Left" Height="29" Margin="338,409,0,0" VerticalAlignment="Top" Width="97" Grid.Row="1" Foreground="#FF0874AA"/>
+        <ComboBox x:Name="Cbx_RegistrarPool_Copy2" HorizontalAlignment="Left" Height="24" Margin="440,411,0,0" Grid.Row="1" VerticalAlignment="Top" Width="251" BorderBrush="#FF0874AA" Foreground="#FF0874AA" Background="White" IsDropDownOpen="True">
+            <ComboBoxItem Content="--None Selected--" IsSelected="True"/>
+            <ComboBoxItem Content="Fake Item 1"/>
+            <ComboBoxItem Content="Fake item 2"/>
+        </ComboBox>
+        <Button x:Name="Btn_Save_OnPrem_Exchange" Content="Update On-Prem Exchange" HorizontalAlignment="Left" Height="23" Margin="17,491,0,0" Grid.Row="1" VerticalAlignment="Top" Width="153" Foreground="#FF0874AA" Background="White"/>
+        <Button x:Name="Btn_Save_O365_Exchange" Content="Update O365 Exchange" HorizontalAlignment="Left" Height="23" Margin="175,491,0,0" Grid.Row="1" VerticalAlignment="Top" Width="153" Foreground="#FF0874AA" Background="White"/>
+        <Label x:Name="Lbl_About_Copy" Content="www.Skype4BAdmin.com" HorizontalAlignment="Left" Height="31" Margin="338,483,0,0" VerticalAlignment="Top" Width="355" Grid.Row="1" Foreground="#FF0874AA"/>
+        <RadioButton x:Name="radioButton" Content="RadioButton" HorizontalAlignment="Left" Margin="440,16,0,0" Grid.Row="1" VerticalAlignment="Top" Foreground="#FF0874AA"/>
+        <Label x:Name="Select_Device_Copy" Content="Enviroment Settings" HorizontalAlignment="Left" Height="33" Margin="338,5,0,0" VerticalAlignment="Top" Width="139" FontWeight="Bold" Grid.RowSpan="2" Foreground="#FF0874AA"/>
+        <Label x:Name="Lbl_TelURI_Copy" Content="Exchange" HorizontalAlignment="Left" Height="30" Margin="338,10,0,0" VerticalAlignment="Top" Width="97" Grid.Row="1" Foreground="#FF0874AA"/>
+        <Label x:Name="Lbl_TelURI_Copy1" Content="Lync/Skype4B" HorizontalAlignment="Left" Height="30" Margin="338,32,0,0" VerticalAlignment="Top" Width="97" Grid.Row="1" Foreground="#FF0874AA"/>
+        <RadioButton x:Name="radioButton_Copy" Content="RadioButton" HorizontalAlignment="Left" Margin="585,16,0,0" Grid.Row="1" VerticalAlignment="Top" Foreground="#FF0874AA"/>
+        <RadioButton x:Name="radioButton_Copy1" Content="RadioButton" HorizontalAlignment="Left" Margin="440,38,0,0" Grid.Row="1" VerticalAlignment="Top" Foreground="#FF0874AA"/>
+        <RadioButton x:Name="radioButton_Copy2" Content="RadioButton" HorizontalAlignment="Left" Margin="585,38,0,0" Grid.Row="1" VerticalAlignment="Top" Foreground="#FF0874AA"/>
+
+    </Grid>
+</Window>
