@@ -171,7 +171,7 @@ Pat richards script
 					}
                  }   
                  Else{
-                 Write-Log -component "Self Update" -Message "Script is up to date" -severity 1
+                 Write-Log -component "Self Update" -Message "Script is up to date on $GithubBranch branch" -severity 1
                  }
         
 	       }
@@ -236,6 +236,12 @@ Pat richards script
   Write-Log -component "Bootstrap" -Message "Started Logging" -severity 1
   Write-Log -component "Bootstrap" -Message "Start-CsMeetingRoomGui.ps1 Version $ScriptVersion" -severity 1
   Write-Log -component "Bootstrap" -Message "GithubRepo set to $GithubRepo Branch $GitHubBranch" -severity 1
+  if ($GitHubBranch -ne "master") {
+		Write-Log -component "Bootstrap" -Message "You are not running the release branch!" -severity 3
+		Write-Log -component "Bootstrap" -Message "This code may not have been tested and could blow things up!" -severity 3
+		Write-Log -component "Bootstrap" -Message "You have been warned!" -severity 3
+		Write-Log -component "Bootstrap" -Message "Pausing for 5 seconds" -severity 1
+            start-sleep 5}
 
   Get-ScriptUpdate 
   

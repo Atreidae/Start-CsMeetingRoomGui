@@ -75,7 +75,7 @@ $Btn_DeleteRoom_Click = {
 
 #endregion Buttons
 
-
+Write-Log -component "MainForm" -Message "Loading WPF objects" -severity 1
 . (Join-Path $PSScriptRoot 'MainWindow.designer.ps1')
-
+Write-Log -component "MainForm" -Message "Drawing MainForm" -severity 1
 $MainForm.ShowDialog()
