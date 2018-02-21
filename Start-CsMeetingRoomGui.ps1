@@ -10,7 +10,7 @@
 		    
 	
 .NOTES  
-    Version      	   	: 0.01 Devel
+    Version      	   	: 0.02 Devel
 	Date			    : 21/02/2018
 	Lync Version		: Tested against Skype4B Server 2015 and Lync Server 2013
     Author    			: James Arber
@@ -75,7 +75,7 @@ param(
 	)
 #region config
 	If (!$LogFileLocation) {$LogFileLocation = $PSCommandPath -replace ".ps1",".log"}
-	[single]$Version = "0.01"
+	[single]$ScriptVersion = "0.02"
 	[string]$GithubRepo = "Start-CsMeetingRoomGui"
 	[string]$GithubBranch = "devel"
 	[string]$BlogPost = "http://www.skype4badmin.com/find-and-test-user-ip-addresses-in-the-skype-location-database" #todo
@@ -234,7 +234,7 @@ Pat richards script
 
   #Script Bootstrap
   Write-Log -component "Bootstrap" -Message "Started Logging" -severity 1
-  Write-Log -component "Bootstrap" -Message "Start-CsMeetingRoomGui.ps1 Version $version" -severity 1
+  Write-Log -component "Bootstrap" -Message "Start-CsMeetingRoomGui.ps1 Version $ScriptVersion" -severity 1
   Write-Log -component "Bootstrap" -Message "GithubRepo set to $GithubRepo Branch $GitHubBranch" -severity 1
 
   Get-ScriptUpdate 
