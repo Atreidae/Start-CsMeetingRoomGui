@@ -83,55 +83,9 @@ $Btn_DeleteRoom_Click = {
 
 $btn_MoveOU_Click = {
 	Write-Log -component "MainForm" -Message "User pressed Change OU button" -severity 1
-	$OuCheck = $null #Clear the sanity check
-	$OU=(Choose-ADOrganizationalUnit -advancedfeatures)
-	Write-Log -component "MoveOU" -Message "Choose-ADOrganizationalUnit returned $OU" -severity 1
-	Write-Log -component "MoveOU" -Message "Checking returned results" -severity 1
-	$OuCheck = (Get-ADOrganizationalUnit $ou.DistinguishedName) #Try to pull the OU from AD
-	If ($oucheck){
-			#We got something from AD
-		#todo. something
-		Write-Log -component "MoveOU" -Message "OU Check Passed, Found object in AD" -severity 1
-		Write-Log -component "MoveOU" -Message "$OuCheck" -severity 1 -logonly
-
-		#Prompt the user to confirm the move
-		#Prompt user to download
-		Write-Log -component "MoveOU" -Message "Prompting user to confirm" -severity 1
-				$title = "Move Ad Object"
-				$message = "Are you sure you want to move $($Tbx_ExRoomAlias.text) to $($ou.name)"
-
-				$yes = New-Object System.Management.Automation.Host.ChoiceDescription "&Yes", `
-					"Moves the Object to the specified OU"
-
-				$no = New-Object System.Management.Automation.Host.ChoiceDescription "&No", `
-					"No thanks."
-
-				$options = [System.Management.Automation.Host.ChoiceDescription[]]($yes, $no)
-
-				$result = $host.ui.PromptForChoice($title, $message, $options, 0) 
-
-				switch ($result)
-					{
-						0 {
-							Write-Log -component "MoveOU" -Message "User opted move Object" -severity 1
-							##todo Move AD Object
-							
-						}
-						1 {Write-Log -component "MoveOU" -Message "User opted to abort move" -severity 1
-									
-							}
-							
-					}
-
-
-	}
-
-	Else {
-			#We didnt get anything from AD
-
-	}
-	    
-
+	$OU=(Choose-ADOrganizationalUnit)
+	Write-Log -component "MainForm" -Message "Choose-ADOrganizationalUnit returned $OU" -severity 1
+	Move-CSRoomADObject ($ou)
 
 }
 

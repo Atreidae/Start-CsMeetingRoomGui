@@ -44,6 +44,9 @@
 						: Active Directory OU picker 
 								Michaja Zouwen https://itmicah.wordpress.com/2016/03/29/active-directory-ou-picker-revisited/
 
+						: Better Message Box 
+								Dirk Bremen https://powershellone.wordpress.com/2015/09/10/a-nicer-promptforchoice-for-the-powershell-console-host/
+
   								
 .INPUTS 
     None. Start-CsMeetingRoomGui.ps1 does not accept pipelined input.
@@ -219,6 +222,75 @@ Pat richards script
 		}
 	} #end WriteLog
 
+	#An alternative to the built-in PromptForChoice providing a consistent UI across different hosts
+	Function Get-Choice {
+    [CmdletBinding()]
+    Param
+    (
+        [Parameter(Mandatory=$true,Position=0)]
+        $Title,
+
+        [Parameter(Mandatory=$true,Position=1)]
+        [String[]]
+        $Options,
+
+        [Parameter(Position=2)]
+        $DefaultChoice = -1
+    )
+    if ($DefaultChoice -ne -1 -and ($DefaultChoice -gt $Options.Count -or $DefaultChoice -lt 1)){
+        Write-Warning "DefaultChoice needs to be a value between 1 and $($Options.Count) or -1 (for none)"
+        exit
+    }
+    Add-Type -AssemblyName System.Windows.Forms
+    Add-Type -AssemblyName System.Drawing
+    [System.Windows.Forms.Application]::EnableVisualStyles()
+    $script:result = ""
+    $form = New-Object System.Windows.Forms.Form
+    $form.FormBorderStyle = [Windows.Forms.FormBorderStyle]::FixedDialog
+    $form.BackColor = [Drawing.Color]::White
+    $form.TopMost = $True
+    $form.Text = $Title
+    $form.ControlBox = $False
+    $form.StartPosition = [Windows.Forms.FormStartPosition]::CenterScreen
+    #calculate width required based on longest option text and form title
+    $minFormWidth = 100
+    $formHeight = 44
+    $minButtonWidth = 70
+    $buttonHeight = 23
+    $buttonY = 12
+    $spacing = 10
+    $buttonWidth = [Windows.Forms.TextRenderer]::MeasureText((($Options | sort Length)[-1]),$form.Font).Width + 1
+    $buttonWidth = [Math]::Max($minButtonWidth, $buttonWidth)
+    $formWidth =  [Windows.Forms.TextRenderer]::MeasureText($Title,$form.Font).Width
+    $spaceWidth = ($options.Count+1) * $spacing
+    $formWidth = ($formWidth, $minFormWidth, ($buttonWidth * $Options.Count + $spaceWidth) | Measure-Object -Maximum).Maximum
+    $form.ClientSize = New-Object System.Drawing.Size($formWidth,$formHeight)
+    $index = 0
+    #create the buttons dynamically based on the options
+    foreach ($option in $Options){
+        Set-Variable "button$index" -Value (New-Object System.Windows.Forms.Button)
+        $temp = Get-Variable "button$index" -ValueOnly
+        $temp.Size = New-Object System.Drawing.Size($buttonWidth,$buttonHeight)
+        $temp.UseVisualStyleBackColor = $True
+        $temp.Text = $option
+        $buttonX = ($index + 1) * $spacing + $index * $buttonWidth
+        $temp.Add_Click({ 
+            $script:result = $this.Text; $form.Close() 
+        })
+        $temp.Location = New-Object System.Drawing.Point($buttonX,$buttonY)
+        $form.Controls.Add($temp)
+        $index++
+    }
+    $shownString = '$this.Activate();'
+    if ($DefaultChoice -ne -1){
+        $shownString += '(Get-Variable "button$($DefaultChoice-1)" -ValueOnly).Focus()'
+    }
+    $shownSB = [ScriptBlock]::Create($shownString)
+    $form.Add_Shown($shownSB)
+    [void]$form.ShowDialog()
+    $result
+}
+
 	Function New-MeetingRoomObject {
 	  #todo
 	  Throw "New-CsMeetingRoomObject "
@@ -235,6 +307,7 @@ Pat richards script
   }
 		
 	Function Choose-ADOrganizationalUnit{
+
 		<#
 	.Synopsis
 	   Choose an organizational unit from a GUI
@@ -1718,6 +1791,57 @@ A///AAIACw=='))
 
 	} #End Function Choose-ADOrganizationalUnit
 
+	Function Move-CSRoomADObject ($ou) {
+	
+	Write-Log -component "MoveOU" -Message "Checking returned results" -severity 1
+	$OuCheck = $null #Clear the sanity check
+	$OuCheck = (Get-ADOrganizationalUnit $ou.DistinguishedName) #Try to pull the OU from AD
+	If ($oucheck){
+			#We got something from AD
+		
+		Write-Log -component "MoveOU" -Message "OU Check Passed, Found object in AD" -severity 1
+		Write-Log -component "MoveOU" -Message "$OuCheck" -severity 1 -logonly
+
+		#Prompt the user to confirm the move
+		#Prompt user to download
+		Write-Log -component "MoveOU" -Message "Prompting user to confirm" -severity 1
+		#todo. Better confirmation based on "get-choice"
+				$title = "Move Ad Object"
+				$message = "Are you sure you want to move $($Tbx_ExRoomAlias.text) to $($ou.name)"
+
+				$yes = New-Object System.Management.Automation.Host.ChoiceDescription "&Yes", `
+					"Moves the Object to the specified OU"
+
+				$no = New-Object System.Management.Automation.Host.ChoiceDescription "&No", `
+					"No thanks."
+
+				$options = [System.Management.Automation.Host.ChoiceDescription[]]($yes, $no)
+
+				$result = $host.ui.PromptForChoice($title, $message, $options, 0) 
+
+				switch ($result)
+					{
+						0 {
+							Write-Log -component "MoveOU" -Message "User opted move Object" -severity 1
+							##todo Move AD Object
+							
+						}
+						1 {Write-Log -component "MoveOU" -Message "User opted to abort move" -severity 1
+									
+							}
+							
+					}
+
+
+	}
+
+	Else {
+			#We didnt get anything from AD
+		Write-Log -component "MoveOU" -Message "Returned OU is invalid. Aborting" -severity 5
+		Write-Log -component "MoveOU" -Message "We couldnt access the AD object your speficied, it may be a projected object or we might not have permissions to read its properties" -severity 3
+	}
+	    
+	}
 #endregion Functions
 
   #Script Bootstrap
