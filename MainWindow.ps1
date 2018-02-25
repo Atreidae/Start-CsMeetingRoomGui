@@ -1,4 +1,16 @@
-﻿
+﻿$cbx_ExPrivateSubjects_CheckedChanged = {
+	Write-Log -component "MainForm" -Message "cbx_ExPrivateSubjects Changed to $($cbx_ExPrivateSubjects.checked) " -severity 1 
+}
+
+$lbl_SurfaceHubURL_Click = {
+	start "https://docs.microsoft.com/en-us/surface-hub/apply-activesync-policies-for-surface-hub-device-accounts"
+}
+
+$label26_Click = {
+
+}
+
+
 $cbx_AdUnlocked_CheckedChanged = {
 	Write-Log -component "MainForm" -Message "cbx_AdUnlocked Changed to $($cbx_AdUnlocked.checked) " -severity 1 
 	If ($cbx_AdUnlocked.checked -and $cbx_AdEnabled.checked) {

@@ -95,11 +95,22 @@ $MainForm = New-Object -TypeName System.Windows.Forms.Form
 [System.Windows.Forms.TextBox]$tbx_ExLocation = $null
 [System.Windows.Forms.Label]$lbl_ResourceWarning = $null
 [System.Windows.Forms.Label]$lbl_LockedWarning = $null
+[System.Windows.Forms.Label]$lbl_SurfaceHubURL = $null
+[System.Windows.Forms.Label]$label47 = $null
+[System.Windows.Forms.Label]$label46 = $null
+[System.Windows.Forms.ComboBox]$cbx_ExAsPolicy = $null
+[System.Windows.Forms.Label]$label45 = $null
+[System.Windows.Forms.ComboBox]$comboBox11 = $null
+[System.Windows.Forms.Label]$label48 = $null
 [System.Windows.Forms.Button]$button1 = $null
 function InitializeComponent
 {
 $tabControl1 = (New-Object -TypeName System.Windows.Forms.TabControl)
 $tab_Main = (New-Object -TypeName System.Windows.Forms.TabPage)
+$lbl_SurfaceHubURL = (New-Object -TypeName System.Windows.Forms.Label)
+$label47 = (New-Object -TypeName System.Windows.Forms.Label)
+$label46 = (New-Object -TypeName System.Windows.Forms.Label)
+$cbx_ExAsPolicy = (New-Object -TypeName System.Windows.Forms.ComboBox)
 $lbl_ResourceWarning = (New-Object -TypeName System.Windows.Forms.Label)
 $lbl_LockedWarning = (New-Object -TypeName System.Windows.Forms.Label)
 $label44 = (New-Object -TypeName System.Windows.Forms.Label)
@@ -167,6 +178,8 @@ $btn_NewRoom = (New-Object -TypeName System.Windows.Forms.Button)
 $lbx_MeetingRooms = (New-Object -TypeName System.Windows.Forms.ListBox)
 $tab_Settings = (New-Object -TypeName System.Windows.Forms.TabPage)
 $groupBox1 = (New-Object -TypeName System.Windows.Forms.GroupBox)
+$label45 = (New-Object -TypeName System.Windows.Forms.Label)
+$comboBox11 = (New-Object -TypeName System.Windows.Forms.ComboBox)
 $label32 = (New-Object -TypeName System.Windows.Forms.Label)
 $comboBox5 = (New-Object -TypeName System.Windows.Forms.ComboBox)
 $label33 = (New-Object -TypeName System.Windows.Forms.Label)
@@ -192,6 +205,7 @@ $rbtn_ExchangeOnPrem = (New-Object -TypeName System.Windows.Forms.RadioButton)
 $label5 = (New-Object -TypeName System.Windows.Forms.Label)
 $label4 = (New-Object -TypeName System.Windows.Forms.Label)
 $label3 = (New-Object -TypeName System.Windows.Forms.Label)
+$label48 = (New-Object -TypeName System.Windows.Forms.Label)
 $tabControl1.SuspendLayout()
 $tab_Main.SuspendLayout()
 $tab_Settings.SuspendLayout()
@@ -207,12 +221,17 @@ $tabControl1.Controls.Add($tab_Settings)
 $tabControl1.Location = (New-Object -TypeName System.Drawing.Point -ArgumentList @([System.Int32]12,[System.Int32]12))
 $tabControl1.Name = [string]'tabControl1'
 $tabControl1.SelectedIndex = [System.Int32]0
-$tabControl1.Size = (New-Object -TypeName System.Drawing.Size -ArgumentList @([System.Int32]632,[System.Int32]683))
+$tabControl1.Size = (New-Object -TypeName System.Drawing.Size -ArgumentList @([System.Int32]632,[System.Int32]699))
 $tabControl1.TabIndex = [System.Int32]59
 #
 #tab_Main
 #
 $tab_Main.BackColor = [System.Drawing.Color]::White
+$tab_Main.Controls.Add($label48)
+$tab_Main.Controls.Add($lbl_SurfaceHubURL)
+$tab_Main.Controls.Add($label47)
+$tab_Main.Controls.Add($label46)
+$tab_Main.Controls.Add($cbx_ExAsPolicy)
 $tab_Main.Controls.Add($lbl_ResourceWarning)
 $tab_Main.Controls.Add($lbl_LockedWarning)
 $tab_Main.Controls.Add($label44)
@@ -281,16 +300,57 @@ $tab_Main.Controls.Add($lbx_MeetingRooms)
 $tab_Main.Location = (New-Object -TypeName System.Drawing.Point -ArgumentList @([System.Int32]4,[System.Int32]22))
 $tab_Main.Name = [string]'tab_Main'
 $tab_Main.Padding = (New-Object -TypeName System.Windows.Forms.Padding -ArgumentList @([System.Int32]3))
-$tab_Main.Size = (New-Object -TypeName System.Drawing.Size -ArgumentList @([System.Int32]624,[System.Int32]657))
+$tab_Main.Size = (New-Object -TypeName System.Drawing.Size -ArgumentList @([System.Int32]624,[System.Int32]673))
 $tab_Main.TabIndex = [System.Int32]0
 $tab_Main.Text = [string]'MeetingRooms'
 $tab_Main.add_Click($tab_Main_Click)
+#
+#lbl_SurfaceHubURL
+#
+$lbl_SurfaceHubURL.AutoSize = $true
+$lbl_SurfaceHubURL.Cursor = [System.Windows.Forms.Cursors]::Hand
+$lbl_SurfaceHubURL.Font = (New-Object -TypeName System.Drawing.Font -ArgumentList @([string]'Microsoft Sans Serif',[System.Single]8.25,[System.Drawing.FontStyle]::Underline,[System.Drawing.GraphicsUnit]::Point,([System.Byte][System.Byte]0)))
+$lbl_SurfaceHubURL.Location = (New-Object -TypeName System.Drawing.Point -ArgumentList @([System.Int32]426,[System.Int32]474))
+$lbl_SurfaceHubURL.Name = [string]'lbl_SurfaceHubURL'
+$lbl_SurfaceHubURL.Size = (New-Object -TypeName System.Drawing.Size -ArgumentList @([System.Int32]78,[System.Int32]13))
+$lbl_SurfaceHubURL.TabIndex = [System.Int32]137
+$lbl_SurfaceHubURL.Text = [string]'More Info Here'
+$lbl_SurfaceHubURL.add_Click($lbl_SurfaceHubURL_Click)
+#
+#label47
+#
+$label47.AutoSize = $true
+$label47.Location = (New-Object -TypeName System.Drawing.Point -ArgumentList @([System.Int32]287,[System.Int32]474))
+$label47.Name = [string]'label47'
+$label47.Size = (New-Object -TypeName System.Drawing.Size -ArgumentList @([System.Int32]142,[System.Int32]13))
+$label47.TabIndex = [System.Int32]136
+$label47.Text = [string]'For SurfaceHub ActiveSync.'
+#
+#label46
+#
+$label46.AutoSize = $true
+$label46.Location = (New-Object -TypeName System.Drawing.Point -ArgumentList @([System.Int32]7,[System.Int32]474))
+$label46.Name = [string]'label46'
+$label46.Size = (New-Object -TypeName System.Drawing.Size -ArgumentList @([System.Int32]92,[System.Int32]13))
+$label46.TabIndex = [System.Int32]135
+$label46.Text = [string]'ActiveSync Policy'
+#
+#cbx_ExAsPolicy
+#
+$cbx_ExAsPolicy.ForeColor = [System.Drawing.Color]::FromArgb(([System.Int32]([System.Byte][System.Byte]8)),([System.Int32]([System.Byte][System.Byte]116)),([System.Int32]([System.Byte][System.Byte]170)))
+
+$cbx_ExAsPolicy.FormattingEnabled = $true
+$cbx_ExAsPolicy.Location = (New-Object -TypeName System.Drawing.Point -ArgumentList @([System.Int32]118,[System.Int32]471))
+$cbx_ExAsPolicy.Name = [string]'cbx_ExAsPolicy'
+$cbx_ExAsPolicy.Size = (New-Object -TypeName System.Drawing.Size -ArgumentList @([System.Int32]163,[System.Int32]21))
+$cbx_ExAsPolicy.TabIndex = [System.Int32]133
+$cbx_ExAsPolicy.Text = [string]'---None Selected---'
 #
 #lbl_ResourceWarning
 #
 $lbl_ResourceWarning.AutoSize = $true
 $lbl_ResourceWarning.ForeColor = [System.Drawing.Color]::Red
-$lbl_ResourceWarning.Location = (New-Object -TypeName System.Drawing.Point -ArgumentList @([System.Int32]221,[System.Int32]634))
+$lbl_ResourceWarning.Location = (New-Object -TypeName System.Drawing.Point -ArgumentList @([System.Int32]221,[System.Int32]649))
 $lbl_ResourceWarning.Name = [string]'lbl_ResourceWarning'
 $lbl_ResourceWarning.Size = (New-Object -TypeName System.Drawing.Size -ArgumentList @([System.Int32]217,[System.Int32]13))
 $lbl_ResourceWarning.TabIndex = [System.Int32]132
@@ -301,7 +361,7 @@ $lbl_ResourceWarning.Visible = $false
 #
 $lbl_LockedWarning.AutoSize = $true
 $lbl_LockedWarning.ForeColor = [System.Drawing.Color]::Red
-$lbl_LockedWarning.Location = (New-Object -TypeName System.Drawing.Point -ArgumentList @([System.Int32]286,[System.Int32]585))
+$lbl_LockedWarning.Location = (New-Object -TypeName System.Drawing.Point -ArgumentList @([System.Int32]286,[System.Int32]599))
 $lbl_LockedWarning.Name = [string]'lbl_LockedWarning'
 $lbl_LockedWarning.Size = (New-Object -TypeName System.Drawing.Size -ArgumentList @([System.Int32]184,[System.Int32]13))
 $lbl_LockedWarning.TabIndex = [System.Int32]131
@@ -374,7 +434,7 @@ $label38.Text = [string]'Name used to create the Exchange and AD account'
 #label37
 #
 $label37.AutoSize = $true
-$label37.Location = (New-Object -TypeName System.Drawing.Point -ArgumentList @([System.Int32]285,[System.Int32]562))
+$label37.Location = (New-Object -TypeName System.Drawing.Point -ArgumentList @([System.Int32]285,[System.Int32]576))
 $label37.Name = [string]'label37'
 $label37.Size = (New-Object -TypeName System.Drawing.Size -ArgumentList @([System.Int32]172,[System.Int32]13))
 $label37.TabIndex = [System.Int32]123
@@ -385,7 +445,7 @@ $label37.Text = [string]'Unique identifier in Active Directory'
 $btn_Cancel.FlatStyle = [System.Windows.Forms.FlatStyle]::Flat
 $btn_Cancel.ForeColor = [System.Drawing.Color]::FromArgb(([System.Int32]([System.Byte][System.Byte]8)),([System.Int32]([System.Byte][System.Byte]116)),([System.Int32]([System.Byte][System.Byte]170)))
 
-$btn_Cancel.Location = (New-Object -TypeName System.Drawing.Point -ArgumentList @([System.Int32]448,[System.Int32]630))
+$btn_Cancel.Location = (New-Object -TypeName System.Drawing.Point -ArgumentList @([System.Int32]448,[System.Int32]645))
 $btn_Cancel.Name = [string]'btn_Cancel'
 $btn_Cancel.Size = (New-Object -TypeName System.Drawing.Size -ArgumentList @([System.Int32]73,[System.Int32]21))
 $btn_Cancel.TabIndex = [System.Int32]86
@@ -395,12 +455,13 @@ $btn_Cancel.UseVisualStyleBackColor = $true
 #cbx_ExPrivateSubjects
 #
 $cbx_ExPrivateSubjects.AutoSize = $true
-$cbx_ExPrivateSubjects.Location = (New-Object -TypeName System.Drawing.Point -ArgumentList @([System.Int32]10,[System.Int32]471))
+$cbx_ExPrivateSubjects.Location = (New-Object -TypeName System.Drawing.Point -ArgumentList @([System.Int32]10,[System.Int32]498))
 $cbx_ExPrivateSubjects.Name = [string]'cbx_ExPrivateSubjects'
-$cbx_ExPrivateSubjects.Size = (New-Object -TypeName System.Drawing.Size -ArgumentList @([System.Int32]328,[System.Int32]17))
+$cbx_ExPrivateSubjects.Size = (New-Object -TypeName System.Drawing.Size -ArgumentList @([System.Int32]143,[System.Int32]17))
 $cbx_ExPrivateSubjects.TabIndex = [System.Int32]122
-$cbx_ExPrivateSubjects.Text = [string]'Delete Booking Subjects (Hides meeting subjects from calendar)'
+$cbx_ExPrivateSubjects.Text = [string]'Delete Booking Subjects'
 $cbx_ExPrivateSubjects.UseVisualStyleBackColor = $true
+$cbx_ExPrivateSubjects.add_CheckedChanged($cbx_ExPrivateSubjects_CheckedChanged)
 #
 #Btn_SaveChange
 #
@@ -409,7 +470,7 @@ $Btn_SaveChange.BackColor = [System.Drawing.Color]::FromArgb(([System.Int32]([Sy
 $Btn_SaveChange.Enabled = $false
 $Btn_SaveChange.FlatStyle = [System.Windows.Forms.FlatStyle]::Flat
 $Btn_SaveChange.ForeColor = [System.Drawing.Color]::White
-$Btn_SaveChange.Location = (New-Object -TypeName System.Drawing.Point -ArgumentList @([System.Int32]527,[System.Int32]630))
+$Btn_SaveChange.Location = (New-Object -TypeName System.Drawing.Point -ArgumentList @([System.Int32]527,[System.Int32]645))
 $Btn_SaveChange.Name = [string]'Btn_SaveChange'
 $Btn_SaveChange.Size = (New-Object -TypeName System.Drawing.Size -ArgumentList @([System.Int32]87,[System.Int32]21))
 $Btn_SaveChange.TabIndex = [System.Int32]87
@@ -419,7 +480,7 @@ $Btn_SaveChange.UseVisualStyleBackColor = $false
 #label24
 #
 $label24.AutoSize = $true
-$label24.Location = (New-Object -TypeName System.Drawing.Point -ArgumentList @([System.Int32]7,[System.Int32]605))
+$label24.Location = (New-Object -TypeName System.Drawing.Point -ArgumentList @([System.Int32]7,[System.Int32]619))
 $label24.Name = [string]'label24'
 $label24.Size = (New-Object -TypeName System.Drawing.Size -ArgumentList @([System.Int32]481,[System.Int32]13))
 $label24.TabIndex = [System.Int32]115
@@ -448,7 +509,7 @@ $label30.Text = [string]'Tip displayed when attempting to book the room as a res
 #label6
 #
 $label6.AutoSize = $true
-$label6.Location = (New-Object -TypeName System.Drawing.Point -ArgumentList @([System.Int32]286,[System.Int32]536))
+$label6.Location = (New-Object -TypeName System.Drawing.Point -ArgumentList @([System.Int32]286,[System.Int32]550))
 $label6.Name = [string]'label6'
 $label6.Size = (New-Object -TypeName System.Drawing.Size -ArgumentList @([System.Int32]96,[System.Int32]13))
 $label6.TabIndex = [System.Int32]108
@@ -489,7 +550,7 @@ $label29.Text = [string]'Stops federated users seeing "External Network" as the 
 #cbx_AdUnlocked
 #
 $cbx_AdUnlocked.AutoSize = $true
-$cbx_AdUnlocked.Location = (New-Object -TypeName System.Drawing.Point -ArgumentList @([System.Int32]155,[System.Int32]585))
+$cbx_AdUnlocked.Location = (New-Object -TypeName System.Drawing.Point -ArgumentList @([System.Int32]155,[System.Int32]599))
 $cbx_AdUnlocked.Name = [string]'cbx_AdUnlocked'
 $cbx_AdUnlocked.Size = (New-Object -TypeName System.Drawing.Size -ArgumentList @([System.Int32]124,[System.Int32]17))
 $cbx_AdUnlocked.TabIndex = [System.Int32]103
@@ -511,7 +572,7 @@ $label2.Text = [string]'Room Alias'
 $btn_MoveOU.FlatStyle = [System.Windows.Forms.FlatStyle]::Flat
 $btn_MoveOU.ForeColor = [System.Drawing.Color]::FromArgb(([System.Int32]([System.Byte][System.Byte]8)),([System.Int32]([System.Byte][System.Byte]116)),([System.Int32]([System.Byte][System.Byte]170)))
 
-$btn_MoveOU.Location = (New-Object -TypeName System.Drawing.Point -ArgumentList @([System.Int32]10,[System.Int32]630))
+$btn_MoveOU.Location = (New-Object -TypeName System.Drawing.Point -ArgumentList @([System.Int32]10,[System.Int32]645))
 $btn_MoveOU.Name = [string]'btn_MoveOU'
 $btn_MoveOU.Size = (New-Object -TypeName System.Drawing.Size -ArgumentList @([System.Int32]83,[System.Int32]21))
 $btn_MoveOU.TabIndex = [System.Int32]102
@@ -521,7 +582,7 @@ $btn_MoveOU.UseVisualStyleBackColor = $true
 #label26
 #
 $label26.AutoSize = $true
-$label26.Location = (New-Object -TypeName System.Drawing.Point -ArgumentList @([System.Int32]6,[System.Int32]448))
+$label26.Location = (New-Object -TypeName System.Drawing.Point -ArgumentList @([System.Int32]7,[System.Int32]448))
 $label26.Name = [string]'label26'
 $label26.Size = (New-Object -TypeName System.Drawing.Size -ArgumentList @([System.Int32]61,[System.Int32]13))
 $label26.TabIndex = [System.Int32]119
@@ -547,7 +608,7 @@ $Btn_DeleteRoom.add_Click($Btn_DeleteRoom_Click)
 $Btn_ResetPassword.FlatStyle = [System.Windows.Forms.FlatStyle]::Flat
 $Btn_ResetPassword.ForeColor = [System.Drawing.Color]::FromArgb(([System.Int32]([System.Byte][System.Byte]8)),([System.Int32]([System.Byte][System.Byte]116)),([System.Int32]([System.Byte][System.Byte]170)))
 
-$Btn_ResetPassword.Location = (New-Object -TypeName System.Drawing.Point -ArgumentList @([System.Int32]99,[System.Int32]630))
+$Btn_ResetPassword.Location = (New-Object -TypeName System.Drawing.Point -ArgumentList @([System.Int32]99,[System.Int32]645))
 $Btn_ResetPassword.Name = [string]'Btn_ResetPassword'
 $Btn_ResetPassword.Size = (New-Object -TypeName System.Drawing.Size -ArgumentList @([System.Int32]106,[System.Int32]21))
 $Btn_ResetPassword.TabIndex = [System.Int32]100
@@ -569,7 +630,7 @@ $tbx_ExMailTip.Text = [string]'Why not make this a Skype meeting?'
 #cbx_AdEnabled
 #
 $cbx_AdEnabled.AutoSize = $true
-$cbx_AdEnabled.Location = (New-Object -TypeName System.Drawing.Point -ArgumentList @([System.Int32]10,[System.Int32]585))
+$cbx_AdEnabled.Location = (New-Object -TypeName System.Drawing.Point -ArgumentList @([System.Int32]10,[System.Int32]599))
 $cbx_AdEnabled.Name = [string]'cbx_AdEnabled'
 $cbx_AdEnabled.Size = (New-Object -TypeName System.Drawing.Size -ArgumentList @([System.Int32]114,[System.Int32]17))
 $cbx_AdEnabled.TabIndex = [System.Int32]99
@@ -663,7 +724,7 @@ $label17.Text = [string]'Room Name'
 #label15
 #
 $label15.AutoSize = $true
-$label15.Location = (New-Object -TypeName System.Drawing.Point -ArgumentList @([System.Int32]7,[System.Int32]562))
+$label15.Location = (New-Object -TypeName System.Drawing.Point -ArgumentList @([System.Int32]7,[System.Int32]576))
 $label15.Name = [string]'label15'
 $label15.Size = (New-Object -TypeName System.Drawing.Size -ArgumentList @([System.Int32]57,[System.Int32]13))
 $label15.TabIndex = [System.Int32]89
@@ -686,7 +747,7 @@ $tbx_ExEmailAddr.Text = [string]'ExampleRoom@Skype4BAdmin.com'
 $tbx_AdObjectDN.BackColor = [System.Drawing.Color]::White
 $tbx_AdObjectDN.ForeColor = [System.Drawing.Color]::FromArgb(([System.Int32]([System.Byte][System.Byte]8)),([System.Int32]([System.Byte][System.Byte]116)),([System.Int32]([System.Byte][System.Byte]170)))
 
-$tbx_AdObjectDN.Location = (New-Object -TypeName System.Drawing.Point -ArgumentList @([System.Int32]84,[System.Int32]559))
+$tbx_AdObjectDN.Location = (New-Object -TypeName System.Drawing.Point -ArgumentList @([System.Int32]84,[System.Int32]573))
 $tbx_AdObjectDN.Name = [string]'tbx_AdObjectDN'
 $tbx_AdObjectDN.ReadOnly = $true
 $tbx_AdObjectDN.Size = (New-Object -TypeName System.Drawing.Size -ArgumentList @([System.Int32]196,[System.Int32]20))
@@ -902,7 +963,7 @@ $label7.Text = [string]'Lync / Skype4B Account Settings'
 #label10
 #
 $label10.AutoSize = $true
-$label10.Location = (New-Object -TypeName System.Drawing.Point -ArgumentList @([System.Int32]7,[System.Int32]536))
+$label10.Location = (New-Object -TypeName System.Drawing.Point -ArgumentList @([System.Int32]7,[System.Int32]550))
 $label10.Name = [string]'label10'
 $label10.Size = (New-Object -TypeName System.Drawing.Size -ArgumentList @([System.Int32]65,[System.Int32]13))
 $label10.TabIndex = [System.Int32]65
@@ -912,7 +973,7 @@ $label10.Text = [string]'AD Account'
 #
 $Tbx_AdSamAccount.ForeColor = [System.Drawing.Color]::FromArgb(([System.Int32]([System.Byte][System.Byte]8)),([System.Int32]([System.Byte][System.Byte]116)),([System.Int32]([System.Byte][System.Byte]170)))
 
-$Tbx_AdSamAccount.Location = (New-Object -TypeName System.Drawing.Point -ArgumentList @([System.Int32]84,[System.Int32]533))
+$Tbx_AdSamAccount.Location = (New-Object -TypeName System.Drawing.Point -ArgumentList @([System.Int32]84,[System.Int32]547))
 $Tbx_AdSamAccount.Name = [string]'Tbx_AdSamAccount'
 $Tbx_AdSamAccount.Size = (New-Object -TypeName System.Drawing.Size -ArgumentList @([System.Int32]196,[System.Int32]20))
 $Tbx_AdSamAccount.TabIndex = [System.Int32]64
@@ -923,7 +984,7 @@ $Tbx_AdSamAccount.Text = [string]'01.12.BirdCage@Skype4badmin.com'
 $label1.AutoSize = $true
 $label1.BackColor = [System.Drawing.Color]::White
 $label1.Font = (New-Object -TypeName System.Drawing.Font -ArgumentList @([string]'Microsoft Sans Serif',[System.Single]8.25,[System.Drawing.FontStyle]::Bold,[System.Drawing.GraphicsUnit]::Point,([System.Byte][System.Byte]0)))
-$label1.Location = (New-Object -TypeName System.Drawing.Point -ArgumentList @([System.Int32]6,[System.Int32]514))
+$label1.Location = (New-Object -TypeName System.Drawing.Point -ArgumentList @([System.Int32]6,[System.Int32]528))
 $label1.Name = [string]'label1'
 $label1.Size = (New-Object -TypeName System.Drawing.Size -ArgumentList @([System.Int32]199,[System.Int32]13))
 $label1.TabIndex = [System.Int32]63
@@ -981,6 +1042,8 @@ $tab_Settings.Text = [string]'Settings'
 #
 #groupBox1
 #
+$groupBox1.Controls.Add($label45)
+$groupBox1.Controls.Add($comboBox11)
 $groupBox1.Controls.Add($label32)
 $groupBox1.Controls.Add($comboBox5)
 $groupBox1.Controls.Add($label33)
@@ -1003,6 +1066,26 @@ $groupBox1.Size = (New-Object -TypeName System.Drawing.Size -ArgumentList @([Sys
 $groupBox1.TabIndex = [System.Int32]124
 $groupBox1.TabStop = $false
 $groupBox1.Text = [string]'New Room Defaults'
+#
+#label45
+#
+$label45.AutoSize = $true
+$label45.Location = (New-Object -TypeName System.Drawing.Point -ArgumentList @([System.Int32]4,[System.Int32]106))
+$label45.Name = [string]'label45'
+$label45.Size = (New-Object -TypeName System.Drawing.Size -ArgumentList @([System.Int32]92,[System.Int32]13))
+$label45.TabIndex = [System.Int32]143
+$label45.Text = [string]'ActiveSync Policy'
+#
+#comboBox11
+#
+$comboBox11.ForeColor = [System.Drawing.Color]::FromArgb(([System.Int32]([System.Byte][System.Byte]8)),([System.Int32]([System.Byte][System.Byte]116)),([System.Int32]([System.Byte][System.Byte]170)))
+
+$comboBox11.FormattingEnabled = $true
+$comboBox11.Location = (New-Object -TypeName System.Drawing.Point -ArgumentList @([System.Int32]115,[System.Int32]103))
+$comboBox11.Name = [string]'comboBox11'
+$comboBox11.Size = (New-Object -TypeName System.Drawing.Size -ArgumentList @([System.Int32]163,[System.Int32]21))
+$comboBox11.TabIndex = [System.Int32]142
+$comboBox11.Text = [string]'---None Selected---'
 #
 #label32
 #
@@ -1261,11 +1344,20 @@ $label3.Size = (New-Object -TypeName System.Drawing.Size -ArgumentList @([System
 $label3.TabIndex = [System.Int32]73
 $label3.Text = [string]'Enviroment Settings'
 #
+#label48
+#
+$label48.AutoSize = $true
+$label48.Location = (New-Object -TypeName System.Drawing.Point -ArgumentList @([System.Int32]287,[System.Int32]499))
+$label48.Name = [string]'label48'
+$label48.Size = (New-Object -TypeName System.Drawing.Size -ArgumentList @([System.Int32]183,[System.Int32]13))
+$label48.TabIndex = [System.Int32]138
+$label48.Text = [string]'Hides meeting subjects from calandar'
+#
 #MainForm
 #
 $MainForm.BackColor = [System.Drawing.Color]::White
 $MainForm.BackgroundImageLayout = [System.Windows.Forms.ImageLayout]::None
-$MainForm.ClientSize = (New-Object -TypeName System.Drawing.Size -ArgumentList @([System.Int32]654,[System.Int32]707))
+$MainForm.ClientSize = (New-Object -TypeName System.Drawing.Size -ArgumentList @([System.Int32]654,[System.Int32]723))
 $MainForm.Controls.Add($tabControl1)
 $MainForm.ForeColor = [System.Drawing.Color]::FromArgb(([System.Int32]([System.Byte][System.Byte]8)),([System.Int32]([System.Byte][System.Byte]116)),([System.Int32]([System.Byte][System.Byte]170)))
 
@@ -1379,6 +1471,13 @@ Add-Member -InputObject $MainForm -Name tbx_ExCapacity -Value $tbx_ExCapacity -M
 Add-Member -InputObject $MainForm -Name tbx_ExLocation -Value $tbx_ExLocation -MemberType NoteProperty
 Add-Member -InputObject $MainForm -Name lbl_ResourceWarning -Value $lbl_ResourceWarning -MemberType NoteProperty
 Add-Member -InputObject $MainForm -Name lbl_LockedWarning -Value $lbl_LockedWarning -MemberType NoteProperty
+Add-Member -InputObject $MainForm -Name lbl_SurfaceHubURL -Value $lbl_SurfaceHubURL -MemberType NoteProperty
+Add-Member -InputObject $MainForm -Name label47 -Value $label47 -MemberType NoteProperty
+Add-Member -InputObject $MainForm -Name label46 -Value $label46 -MemberType NoteProperty
+Add-Member -InputObject $MainForm -Name cbx_ExAsPolicy -Value $cbx_ExAsPolicy -MemberType NoteProperty
+Add-Member -InputObject $MainForm -Name label45 -Value $label45 -MemberType NoteProperty
+Add-Member -InputObject $MainForm -Name comboBox11 -Value $comboBox11 -MemberType NoteProperty
+Add-Member -InputObject $MainForm -Name label48 -Value $label48 -MemberType NoteProperty
 Add-Member -InputObject $MainForm -Name button1 -Value $button1 -MemberType NoteProperty
 }
 . InitializeComponent
