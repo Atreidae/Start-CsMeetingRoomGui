@@ -98,19 +98,23 @@ $MainForm = New-Object -TypeName System.Windows.Forms.Form
 [System.Windows.Forms.Label]$lbl_SurfaceHubURL = $null
 [System.Windows.Forms.Label]$label47 = $null
 [System.Windows.Forms.Label]$label46 = $null
-[System.Windows.Forms.ComboBox]$cbx_ExAsPolicy = $null
 [System.Windows.Forms.Label]$label45 = $null
 [System.Windows.Forms.ComboBox]$comboBox11 = $null
 [System.Windows.Forms.Label]$label48 = $null
+[System.Windows.Forms.ComboBox]$dbx_ExAsPolicy = $null
+[System.Windows.Forms.Button]$button2 = $null
+[System.Windows.Forms.Label]$label49 = $null
+[System.Windows.Forms.TextBox]$textBox1 = $null
 [System.Windows.Forms.Button]$button1 = $null
 function InitializeComponent
 {
 $tabControl1 = (New-Object -TypeName System.Windows.Forms.TabControl)
 $tab_Main = (New-Object -TypeName System.Windows.Forms.TabPage)
+$label48 = (New-Object -TypeName System.Windows.Forms.Label)
 $lbl_SurfaceHubURL = (New-Object -TypeName System.Windows.Forms.Label)
 $label47 = (New-Object -TypeName System.Windows.Forms.Label)
 $label46 = (New-Object -TypeName System.Windows.Forms.Label)
-$cbx_ExAsPolicy = (New-Object -TypeName System.Windows.Forms.ComboBox)
+$dbx_ExAsPolicy = (New-Object -TypeName System.Windows.Forms.ComboBox)
 $lbl_ResourceWarning = (New-Object -TypeName System.Windows.Forms.Label)
 $lbl_LockedWarning = (New-Object -TypeName System.Windows.Forms.Label)
 $label44 = (New-Object -TypeName System.Windows.Forms.Label)
@@ -205,7 +209,9 @@ $rbtn_ExchangeOnPrem = (New-Object -TypeName System.Windows.Forms.RadioButton)
 $label5 = (New-Object -TypeName System.Windows.Forms.Label)
 $label4 = (New-Object -TypeName System.Windows.Forms.Label)
 $label3 = (New-Object -TypeName System.Windows.Forms.Label)
-$label48 = (New-Object -TypeName System.Windows.Forms.Label)
+$button2 = (New-Object -TypeName System.Windows.Forms.Button)
+$label49 = (New-Object -TypeName System.Windows.Forms.Label)
+$textBox1 = (New-Object -TypeName System.Windows.Forms.TextBox)
 $tabControl1.SuspendLayout()
 $tab_Main.SuspendLayout()
 $tab_Settings.SuspendLayout()
@@ -231,7 +237,7 @@ $tab_Main.Controls.Add($label48)
 $tab_Main.Controls.Add($lbl_SurfaceHubURL)
 $tab_Main.Controls.Add($label47)
 $tab_Main.Controls.Add($label46)
-$tab_Main.Controls.Add($cbx_ExAsPolicy)
+$tab_Main.Controls.Add($dbx_ExAsPolicy)
 $tab_Main.Controls.Add($lbl_ResourceWarning)
 $tab_Main.Controls.Add($lbl_LockedWarning)
 $tab_Main.Controls.Add($label44)
@@ -305,6 +311,15 @@ $tab_Main.TabIndex = [System.Int32]0
 $tab_Main.Text = [string]'MeetingRooms'
 $tab_Main.add_Click($tab_Main_Click)
 #
+#label48
+#
+$label48.AutoSize = $true
+$label48.Location = (New-Object -TypeName System.Drawing.Point -ArgumentList @([System.Int32]287,[System.Int32]499))
+$label48.Name = [string]'label48'
+$label48.Size = (New-Object -TypeName System.Drawing.Size -ArgumentList @([System.Int32]183,[System.Int32]13))
+$label48.TabIndex = [System.Int32]138
+$label48.Text = [string]'Hides meeting subjects from calandar'
+#
 #lbl_SurfaceHubURL
 #
 $lbl_SurfaceHubURL.AutoSize = $true
@@ -335,16 +350,16 @@ $label46.Size = (New-Object -TypeName System.Drawing.Size -ArgumentList @([Syste
 $label46.TabIndex = [System.Int32]135
 $label46.Text = [string]'ActiveSync Policy'
 #
-#cbx_ExAsPolicy
+#dbx_ExAsPolicy
 #
-$cbx_ExAsPolicy.ForeColor = [System.Drawing.Color]::FromArgb(([System.Int32]([System.Byte][System.Byte]8)),([System.Int32]([System.Byte][System.Byte]116)),([System.Int32]([System.Byte][System.Byte]170)))
+$dbx_ExAsPolicy.ForeColor = [System.Drawing.Color]::FromArgb(([System.Int32]([System.Byte][System.Byte]8)),([System.Int32]([System.Byte][System.Byte]116)),([System.Int32]([System.Byte][System.Byte]170)))
 
-$cbx_ExAsPolicy.FormattingEnabled = $true
-$cbx_ExAsPolicy.Location = (New-Object -TypeName System.Drawing.Point -ArgumentList @([System.Int32]118,[System.Int32]471))
-$cbx_ExAsPolicy.Name = [string]'cbx_ExAsPolicy'
-$cbx_ExAsPolicy.Size = (New-Object -TypeName System.Drawing.Size -ArgumentList @([System.Int32]163,[System.Int32]21))
-$cbx_ExAsPolicy.TabIndex = [System.Int32]133
-$cbx_ExAsPolicy.Text = [string]'---None Selected---'
+$dbx_ExAsPolicy.FormattingEnabled = $true
+$dbx_ExAsPolicy.Location = (New-Object -TypeName System.Drawing.Point -ArgumentList @([System.Int32]118,[System.Int32]471))
+$dbx_ExAsPolicy.Name = [string]'dbx_ExAsPolicy'
+$dbx_ExAsPolicy.Size = (New-Object -TypeName System.Drawing.Size -ArgumentList @([System.Int32]163,[System.Int32]21))
+$dbx_ExAsPolicy.TabIndex = [System.Int32]133
+$dbx_ExAsPolicy.Text = [string]'---None Selected---'
 #
 #lbl_ResourceWarning
 #
@@ -578,6 +593,7 @@ $btn_MoveOU.Size = (New-Object -TypeName System.Drawing.Size -ArgumentList @([Sy
 $btn_MoveOU.TabIndex = [System.Int32]102
 $btn_MoveOU.Text = [string]'Move OU...'
 $btn_MoveOU.UseVisualStyleBackColor = $true
+$btn_MoveOU.add_Click($btn_MoveOU_Click)
 #
 #label26
 #
@@ -1036,12 +1052,15 @@ $tab_Settings.Controls.Add($label3)
 $tab_Settings.Location = (New-Object -TypeName System.Drawing.Point -ArgumentList @([System.Int32]4,[System.Int32]22))
 $tab_Settings.Name = [string]'tab_Settings'
 $tab_Settings.Padding = (New-Object -TypeName System.Windows.Forms.Padding -ArgumentList @([System.Int32]3))
-$tab_Settings.Size = (New-Object -TypeName System.Drawing.Size -ArgumentList @([System.Int32]624,[System.Int32]657))
+$tab_Settings.Size = (New-Object -TypeName System.Drawing.Size -ArgumentList @([System.Int32]624,[System.Int32]673))
 $tab_Settings.TabIndex = [System.Int32]1
 $tab_Settings.Text = [string]'Settings'
 #
 #groupBox1
 #
+$groupBox1.Controls.Add($button2)
+$groupBox1.Controls.Add($label49)
+$groupBox1.Controls.Add($textBox1)
 $groupBox1.Controls.Add($label45)
 $groupBox1.Controls.Add($comboBox11)
 $groupBox1.Controls.Add($label32)
@@ -1070,7 +1089,7 @@ $groupBox1.Text = [string]'New Room Defaults'
 #label45
 #
 $label45.AutoSize = $true
-$label45.Location = (New-Object -TypeName System.Drawing.Point -ArgumentList @([System.Int32]4,[System.Int32]106))
+$label45.Location = (New-Object -TypeName System.Drawing.Point -ArgumentList @([System.Int32]6,[System.Int32]106))
 $label45.Name = [string]'label45'
 $label45.Size = (New-Object -TypeName System.Drawing.Size -ArgumentList @([System.Int32]92,[System.Int32]13))
 $label45.TabIndex = [System.Int32]143
@@ -1344,14 +1363,38 @@ $label3.Size = (New-Object -TypeName System.Drawing.Size -ArgumentList @([System
 $label3.TabIndex = [System.Int32]73
 $label3.Text = [string]'Enviroment Settings'
 #
-#label48
+#button2
 #
-$label48.AutoSize = $true
-$label48.Location = (New-Object -TypeName System.Drawing.Point -ArgumentList @([System.Int32]287,[System.Int32]499))
-$label48.Name = [string]'label48'
-$label48.Size = (New-Object -TypeName System.Drawing.Size -ArgumentList @([System.Int32]183,[System.Int32]13))
-$label48.TabIndex = [System.Int32]138
-$label48.Text = [string]'Hides meeting subjects from calandar'
+$button2.FlatStyle = [System.Windows.Forms.FlatStyle]::Flat
+$button2.ForeColor = [System.Drawing.Color]::FromArgb(([System.Int32]([System.Byte][System.Byte]8)),([System.Int32]([System.Byte][System.Byte]116)),([System.Int32]([System.Byte][System.Byte]170)))
+
+$button2.Location = (New-Object -TypeName System.Drawing.Point -ArgumentList @([System.Int32]326,[System.Int32]300))
+$button2.Name = [string]'button2'
+$button2.Size = (New-Object -TypeName System.Drawing.Size -ArgumentList @([System.Int32]83,[System.Int32]21))
+$button2.TabIndex = [System.Int32]146
+$button2.Text = [string]'Change OU...'
+$button2.UseVisualStyleBackColor = $true
+#
+#label49
+#
+$label49.AutoSize = $true
+$label49.Location = (New-Object -TypeName System.Drawing.Point -ArgumentList @([System.Int32]4,[System.Int32]304))
+$label49.Name = [string]'label49'
+$label49.Size = (New-Object -TypeName System.Drawing.Size -ArgumentList @([System.Int32]60,[System.Int32]13))
+$label49.TabIndex = [System.Int32]145
+$label49.Text = [string]'Default OU'
+#
+#textBox1
+#
+$textBox1.BackColor = [System.Drawing.Color]::White
+$textBox1.ForeColor = [System.Drawing.Color]::FromArgb(([System.Int32]([System.Byte][System.Byte]8)),([System.Int32]([System.Byte][System.Byte]116)),([System.Int32]([System.Byte][System.Byte]170)))
+
+$textBox1.Location = (New-Object -TypeName System.Drawing.Point -ArgumentList @([System.Int32]81,[System.Int32]301))
+$textBox1.Name = [string]'textBox1'
+$textBox1.ReadOnly = $true
+$textBox1.Size = (New-Object -TypeName System.Drawing.Size -ArgumentList @([System.Int32]238,[System.Int32]20))
+$textBox1.TabIndex = [System.Int32]144
+$textBox1.Text = [string]'ou=Meeting Rooms,ou=Users,dc=skype4badmin,dc=local'
 #
 #MainForm
 #
@@ -1474,10 +1517,13 @@ Add-Member -InputObject $MainForm -Name lbl_LockedWarning -Value $lbl_LockedWarn
 Add-Member -InputObject $MainForm -Name lbl_SurfaceHubURL -Value $lbl_SurfaceHubURL -MemberType NoteProperty
 Add-Member -InputObject $MainForm -Name label47 -Value $label47 -MemberType NoteProperty
 Add-Member -InputObject $MainForm -Name label46 -Value $label46 -MemberType NoteProperty
-Add-Member -InputObject $MainForm -Name cbx_ExAsPolicy -Value $cbx_ExAsPolicy -MemberType NoteProperty
 Add-Member -InputObject $MainForm -Name label45 -Value $label45 -MemberType NoteProperty
 Add-Member -InputObject $MainForm -Name comboBox11 -Value $comboBox11 -MemberType NoteProperty
 Add-Member -InputObject $MainForm -Name label48 -Value $label48 -MemberType NoteProperty
+Add-Member -InputObject $MainForm -Name dbx_ExAsPolicy -Value $dbx_ExAsPolicy -MemberType NoteProperty
+Add-Member -InputObject $MainForm -Name button2 -Value $button2 -MemberType NoteProperty
+Add-Member -InputObject $MainForm -Name label49 -Value $label49 -MemberType NoteProperty
+Add-Member -InputObject $MainForm -Name textBox1 -Value $textBox1 -MemberType NoteProperty
 Add-Member -InputObject $MainForm -Name button1 -Value $button1 -MemberType NoteProperty
 }
 . InitializeComponent

@@ -219,7 +219,6 @@ Pat richards script
 		}
 	} #end WriteLog
 
-
 	Function New-MeetingRoomObject {
 	  #todo
 	  Throw "New-CsMeetingRoomObject "
@@ -234,7 +233,6 @@ Pat richards script
 	  #todo
 	  Throw "Convert-MeetingRoomObject $RoomToConvert"
   }
-
 		
 	Function Choose-ADOrganizationalUnit{
 		<#
@@ -312,7 +310,7 @@ Pat richards script
 			$MultiSelect
 		)
 
-    
+		Write-Log -component "Choose-ADOrganizationalUnit" -Message "Function called" -severity 1
 		#region Import the Assemblies
 
 		[void][reflection.assembly]::Load("mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089")
